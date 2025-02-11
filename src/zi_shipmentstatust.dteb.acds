@@ -1,0 +1,3 @@
+define view entity buffer on ZI_ShipmentStatusT
+  layer core
+  type full

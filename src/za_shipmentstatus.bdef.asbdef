@@ -1,0 +1,43 @@
+projection implementation in class zbp_a_shipmentstatus unique;
+strict( 2 );
+use draft;
+extensible;
+use side effects;
+
+define behavior for ZA_ShipmentStatus
+  alias ShipmentStatus
+  use etag
+  extensible {
+
+    field( modify, mandatory ) LocalizedDescription;
+
+    use create( augment );
+    use update( augment );
+    use delete;
+
+    use action Edit;
+    use action Activate;
+    use action Discard;
+    use action Resume;
+    use action Prepare;
+
+    use association _Texts {
+      create;
+      with draft;
+    }
+
+    use function GetFromNaturalId;
+
+  }
+
+define behavior for ZA_ShipmentStatusT
+  alias ShipmentStatusTexts
+  use etag
+  extensible {
+
+    use update;
+    use delete;
+
+    use association _up { with draft; }
+
+}

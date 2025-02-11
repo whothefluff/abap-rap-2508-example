@@ -1,0 +1,11 @@
+extension using interface zi_shipmentstatus
+implementation in class zbp_x_p_shipmentstatusconfig unique;
+
+extend behavior for ShipmentStatus {
+
+	field( mandatory ) ZZIsActiveZEX;
+	
+}
+
+extend behavior for ShipmentStatusTexts{
+}

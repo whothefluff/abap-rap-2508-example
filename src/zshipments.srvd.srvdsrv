@@ -1,0 +1,9 @@
+@AbapCatalog.extensibility.extensible: true
+@EndUserText.label: 'Shipments'
+define service ZSHIPMENTS
+  provider contracts odata_v4_webapi, odata_v2_webapi {
+  expose ZA_ShipmentStatus  as ShipmentStatus;
+  expose ZA_ShipmentStatusT as ShipmentStatusTexts;
+  expose I_Language         as Languages;
+  expose I_LanguageText     as LanguageTexts;
+}

@@ -1,0 +1,7 @@
+extension for projection;
+
+extend behavior for ShipmentStatus {
+}
+
+extend behavior for ShipmentStatusTexts {
+}

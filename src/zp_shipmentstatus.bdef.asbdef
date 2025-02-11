@@ -1,0 +1,76 @@
+managed implementation in class zbp_p_shipmentstatus unique;
+strict( 2 );
+extensible {
+  with validations on save;
+  with determinations on save;
+  with determinations on modify;
+  with additional save;
+}
+with draft;
+
+define behavior for ZP_ShipmentStatus
+  alias ShipmentStatus
+  persistent table zashpmt_sta
+  draft table zdshpmt_sta query ZP_ShipmentStatusD
+  lock master
+  total etag TotalLastChangedAt
+  authorization master( instance )
+  etag master LocalLastChangedAt
+  extensible {
+
+    field( numbering: managed, readonly ) ID;
+    field( mandatory: create ) NaturalId;
+    field( readonly: update ) NaturalId;
+    field( readonly ) LocalCreatedAt, LocalCreatedBy, LocalLastChangedAt, LocalLastChangedBy, TotalLastChangedAt;
+
+    create( precheck );
+    update;
+    delete( features: instance, precheck );
+
+    association _Texts {
+      create;
+      with draft;
+    }
+
+    static function GetFromNaturalId parameter ZD_ShipmentStatusF01 result selective [0..*] $self;
+
+    draft action( features: instance ) Edit;
+    draft action Activate optimized;
+    draft action Discard;
+    draft action Resume;
+    draft determine action Prepare extensible;
+
+    mapping for zashpmt_sta corresponding extensible {
+      NaturalId = natural_id;
+      LocalCreatedAt = local_created_at;
+      LocalCreatedBy = local_created_by;
+      LocalLastChangedAt = local_last_changed_at;
+      LocalLastChangedBy = local_last_changed_by;
+      TotalLastChangedAt = total_last_changed_at;
+    }
+
+  }
+
+define behavior for ZP_ShipmentStatusT
+  alias ShipmentStatusTexts
+  persistent table zashpmt_stat
+  draft table zdshpmt_stat query ZP_ShipmentStatusTD
+  ( lock, authorization, etag )dependent by _Up
+  extensible {
+
+    field( readonly ) ID;
+    field( readonly: update ) Language;
+
+    update;
+    delete;
+
+    association _up { with draft; }
+
+    mapping for zashpmt_stat corresponding extensible {
+      CreatedAt = created_at;
+      CreatedBy = created_by;
+      LastChangedAt = last_changed_at;
+      LastChangedBy = last_changed_by;
+    }
+
+  }

@@ -1,0 +1,5 @@
+CLASS zbp_a_shipmentstatus DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF za_shipmentstatus.
+ENDCLASS.
+
+CLASS zbp_a_shipmentstatus IMPLEMENTATION.
+ENDCLASS.
