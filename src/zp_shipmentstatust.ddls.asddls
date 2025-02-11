@@ -1,6 +1,7 @@
 @AbapCatalog.entityBuffer.definitionAllowed: true
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'Shipment Status Texts'
+@Search.searchable: true
 define view entity ZP_ShipmentStatusT
   as select from zashpmt_stat
   association to parent ZP_ShipmentStatus as _up
@@ -8,6 +9,7 @@ define view entity ZP_ShipmentStatusT
   association [0..1] to I_Language as _Language
     on $projection.Language = _Language.Language
   {
+    @Semantics.language: true
     key language as Language,
     key cast( id as z_shipment_status preserving type ) as ID,
     @Semantics.user.createdBy: true
@@ -18,6 +20,12 @@ define view entity ZP_ShipmentStatusT
     last_changed_by as LastChangedBy,
     @Semantics.systemDateTime.localInstanceLastChangedAt: true
     last_changed_at as LastChangedAt,
+    @Semantics.text: true
+    @Search: {
+      defaultSearchElement: true,
+      fuzzinessThreshold: 1,
+      ranking: #HIGH
+    }
     description as Description,
     _up,
     _Language

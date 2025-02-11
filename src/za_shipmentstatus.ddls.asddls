@@ -1,4 +1,4 @@
-@AbapCatalog: {
+@AbapCatalog: {  
   entityBuffer.propagationAllowed: true,
   extensibility: {
     allowNewCompositions: true,
@@ -14,14 +14,17 @@
 }
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'Shipment Status'
-@Metadata: {
-  ignorePropagatedAnnotations: false,
-  allowExtensions: true
-}
+@Metadata.allowExtensions: true
+@ObjectModel.semanticKey: [ 'ID', 'LocalizedDescription' ]
+@Search.searchable: true
 define root view entity ZA_ShipmentStatus
   provider contract transactional_query
   as projection on ZI_ShipmentStatus as ZI_ShipmentStatus
   {
+    @ObjectModel.text: {
+      association: null,
+      element: [ 'LocalizedDescription' ]
+    }
     key ID,
     NaturalId,
     LocalCreatedBy,

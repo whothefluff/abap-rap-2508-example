@@ -13,13 +13,20 @@
 }
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'Shipment Status'
+@Search.searchable: true
 define root view entity ZP_ShipmentStatus
   as select from zashpmt_sta
   composition [0..*] of ZP_ShipmentStatusT as _Texts
   association [1] to ZE_ShipmentStatus as _Extension
     on $projection.ID = _Extension.ID
   {
+    @ObjectModel.text.association: '_Texts'
     key id as ID,
+    @Search: {
+      defaultSearchElement: true,
+      fuzzinessThreshold: 1,
+      ranking: #MEDIUM
+    }
     natural_id as NaturalId,
     @Semantics.user.createdBy: true
     local_created_by as LocalCreatedBy,

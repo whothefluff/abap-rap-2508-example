@@ -13,6 +13,7 @@
 }
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'Shipment Status'
+@Search.searchable: true
 define root view entity ZI_ShipmentStatus
   provider contract transactional_interface
   as projection on ZP_ShipmentStatus as ZP_ShipmentStatus

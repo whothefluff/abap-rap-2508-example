@@ -52,12 +52,12 @@ class lhc_ShipmentStatus implementation.
       entity ShipmentStatus
         execute GetFromNaturalId
         from corresponding #( entities
-                              mapping ( %param = %data mapping NaturalId = NaturalId )
+                              mapping %param = %data
                                       %cid = %cid )
         request value #( NaturalId = if_abap_behv=>mk-on )
       result final(funct_result)
       failed final(funct_failed)
-      reported final(funct_reported).
+      reported final(funct_reported) ##EML_READ_IN_LOCAL_MODE_OK.
 
     final(existing_nat_ids) = value existing_nat_ids( for <r> in funct_result
                                                       ( <r>-%param-%data-NaturalId ) ).
@@ -132,8 +132,7 @@ class lhc_ShipmentStatus implementation.
                       ( %tky = value #( ID = <fk>-id )
                         %control = corresponding #( requested_fields ) ) )
       result final(found_entities)
-      failed failed
-      reported reported.
+      failed failed.
 
     result = value #( for <e> in found_entities
                       ( %cid = found_keys[ id = <e>-%data-ID ]-cid

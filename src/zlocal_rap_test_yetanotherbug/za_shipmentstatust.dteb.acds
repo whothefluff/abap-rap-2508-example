@@ -1,0 +1,4 @@
+propagate view entity buffer on ZA_ShipmentStatus
+{
+  LocalizedDescription
+}
