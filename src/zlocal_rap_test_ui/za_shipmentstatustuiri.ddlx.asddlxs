@@ -1,0 +1,124 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeImageUrl: 'sap-icon://customize',
+    typeName: 'Status Text - Detail',
+    title: {
+      value: '_up.NaturalId'
+    },
+    description: {
+      value: '_up.LocalizedDescription'
+    }
+  }
+}
+annotate entity ZA_ShipmentStatusT with
+  {
+    // <-
+    @UI: {
+      facet: [
+        {
+          id: 'SubHeaderFacetA',
+          purpose: #HEADER,
+          targetQualifier: 'SubHeaderDataA',
+          type: #FIELDGROUP_REFERENCE
+        },
+        {
+          id: 'SubHeaderFacetB',
+          purpose: #HEADER,
+          targetQualifier: 'SubHeaderDataB',
+          type: #FIELDGROUP_REFERENCE
+        },
+        {
+          id: 'SubHeaderFacetC',
+          purpose: #HEADER,
+          targetQualifier: 'SubHeaderDataC',
+          type: #FIELDGROUP_REFERENCE
+        },
+        {
+          id: 'DataFacet',
+          label: 'Data',
+          type: #IDENTIFICATION_REFERENCE
+        }
+      ],
+      fieldGroup: [{
+        qualifier: 'SubHeaderDataA',
+        position: 20
+      }],
+      identification: [{
+        hidden: true
+      }],
+      selectionField: [{
+        exclude: false
+      }]
+    }
+    Language;
+    // ->
+    // <-
+    @UI: {
+      fieldGroup: [{
+        qualifier: 'SubHeaderDataA',
+        position: 10
+      }],
+      identification: [{
+        hidden: true
+      }]
+    }
+    ID;
+    // ->
+    // <-
+    @UI: {
+      fieldGroup: [{
+        qualifier: 'SubHeaderDataB',
+        position: 10
+      }],
+      identification: [{
+        hidden: true
+      }]
+    }
+    CreatedAt;
+    // ->
+    // <-
+    @UI: {
+      fieldGroup: [{
+        qualifier: 'SubHeaderDataB',
+        position: 20
+      }],
+      identification: [{
+        hidden: true
+      }]
+    }
+    CreatedBy;
+    // ->
+    // <-
+    @UI: {
+      fieldGroup: [{
+        qualifier: 'SubHeaderDataC',
+        position: 10
+      }],
+      identification: [{
+        hidden: true
+      }]
+    }
+    LastChangedAt;
+    // ->
+    // <-
+    @UI: {
+      fieldGroup: [{
+        qualifier: 'SubHeaderDataC',
+        position: 20
+      }],
+      identification: [{
+        hidden: true
+      }]
+    }
+    LastChangedBy;
+    // ->
+    // <-
+    @UI: {
+      identification: [{
+        position: 10
+      }]
+    }
+    Description;
+    // ->
+  }

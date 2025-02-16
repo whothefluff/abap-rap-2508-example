@@ -1,0 +1,15 @@
+@Metadata.layer: #CORE
+annotate entity ZA_ShipmentStatus with
+  {
+    // <-
+    @UI: {
+      lineItem: [{
+        importance: #MEDIUM
+      }],
+      selectionField: [{
+        exclude: false
+      }]
+    }
+    ZZIsActiveZEX;
+    // ->
+  }

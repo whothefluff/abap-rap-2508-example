@@ -1,0 +1,126 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeImageUrl: 'sap-icon://customize',
+    typeName: 'Status - Detail',
+    title: {
+      value: 'NaturalId'
+    },
+    description: {
+      value: 'LocalizedDescription'
+    }
+  }
+}
+annotate entity ZA_ShipmentStatus with
+  {
+    // <-
+    @UI: {
+      facet: [
+        {
+          id: 'SubHeaderFacetA',
+          purpose: #HEADER,
+          targetQualifier: 'SubHeaderDataA',
+          type: #FIELDGROUP_REFERENCE,
+          position: 10
+        },
+        {
+          id: 'SubHeaderFacetB',
+          purpose: #HEADER,
+          targetQualifier: 'SubHeaderDataB',
+          type: #FIELDGROUP_REFERENCE,
+          position: 20
+        },
+        {
+          id: 'DataFacet',
+          label: 'Data',
+          type: #IDENTIFICATION_REFERENCE,
+          position: 10
+        },
+        {
+          id: 'TextListFacet',
+          label: 'Defined Texts',
+          type: #LINEITEM_REFERENCE,
+          targetElement: '_Texts',
+          position: 20
+        }
+      ],
+      fieldGroup: [{
+        qualifier: 'SubHeaderDataA',
+        position: 10
+      }],
+      identification: [{
+        hidden: true
+      }]
+    }
+    ID;
+    // ->
+    // <-
+    @UI:{
+      identification: [{
+        hidden: true
+      }],
+      multiLineText: true
+    }
+    LocalizedDescription;
+    // ->
+    // <-
+    @UI: {
+      fieldGroup: [{
+        qualifier: 'SubHeaderDataA',
+        position: 20
+      }],
+      identification: [{
+        hidden: true
+      }]
+    }
+    LocalCreatedAt;
+    // ->
+    // <-
+    @UI: {
+      fieldGroup: [{
+        qualifier: 'SubHeaderDataA',
+        position: 30
+      }],
+      identification: [{
+        hidden: true
+      }]
+    }
+    LocalCreatedBy;
+    // ->
+    // <-
+    @UI: {
+      fieldGroup: [{
+        qualifier: 'SubHeaderDataB',
+        position: 20
+      }],
+      identification: [{
+        hidden: true
+      }]
+    }
+    LocalLastChangedAt;
+    // ->
+    // <-
+    @UI: {
+      fieldGroup: [{
+        qualifier: 'SubHeaderDataB',
+        position: 30
+      }],
+      identification: [{
+        hidden: true
+      }]
+    }
+    LocalLastChangedBy;
+    // ->
+    // <-
+    @UI: {
+      fieldGroup: [{
+        qualifier: 'SubHeaderDataB',
+        position: 10
+      }],
+      identification: [{
+        hidden: true
+      }]
+    }
+    TotalLastChangedAt;
+    // ->
+  }

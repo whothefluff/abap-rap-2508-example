@@ -24,6 +24,8 @@ define behavior for ZI_ShipmentStatus
 
     use function GetFromNaturalId;
 
+    use event Deleted;
+
   }
 
 define behavior for ZI_ShipmentStatusT

@@ -26,7 +26,7 @@ class zcl_shipments_test implementation.
         delete from value #( for <r> in result
                              ( %tky-ID = <r>-%param-%tky-ID ) ) ##EML_FAILED_MISSING_OK.
 
-    commit entities. if sy-subrc eq 0.endif. "worthless patronizing check
+    commit entities. if sy-subrc eq 0. endif. "worthless patronizing check
 
     modify entities of ZA_ShipmentStatus
       entity ShipmentStatus

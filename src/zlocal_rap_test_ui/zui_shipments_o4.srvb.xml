@@ -4,7 +4,7 @@
   <asx:values>
    <SRVB>
     <METADATA>
-     <NAME>ZAPI_SHIPMENTS_O4</NAME>
+     <NAME>ZUI_SHIPMENTS_O4</NAME>
      <TYPE>SRVB/SVB</TYPE>
      <DESCRIPTION>Shipments</DESCRIPTION>
      <LANGUAGE>EN</LANGUAGE>
@@ -13,10 +13,9 @@
     </METADATA>
     <CONTENT>
      <BIND_TYPE_IMPL>
-      <NAME>ZAPI_SHIPMENTS_O4</NAME>
+      <NAME>ZUI_SHIPMENTS_O4</NAME>
      </BIND_TYPE_IMPL>
      <BIND_TYPE>ODATA</BIND_TYPE>
-     <BIND_TYPE_CATEGORY>1</BIND_TYPE_CATEGORY>
      <BIND_TYPE_VERSION>V4</BIND_TYPE_VERSION>
      <SERVICES>
       <item>
@@ -26,9 +25,9 @@
          <SERVICE_VERSION>0001</SERVICE_VERSION>
          <RELEASE_STATE>NOT_RELEASED</RELEASE_STATE>
          <SRVD_REF>
-          <URI>/sap/bc/adt/ddic/srvd/sources/zapi_shipments</URI>
+          <URI>/sap/bc/adt/ddic/srvd/sources/zui_shipments</URI>
           <TYPE>SRVD/SRV</TYPE>
-          <NAME>ZAPI_SHIPMENTS</NAME>
+          <NAME>ZUI_SHIPMENTS</NAME>
          </SRVD_REF>
          <BIND_TYPE_DATA>
           <CONTENT>
@@ -40,7 +39,7 @@
       </item>
      </SERVICES>
     </CONTENT>
-    <CONTRACT>C2</CONTRACT>
+    <CONTRACT>C1</CONTRACT>
     <RELEASE_SUPPORTED>true</RELEASE_SUPPORTED>
     <PUBLISHED>true</PUBLISHED>
     <BINDING_CREATED>true</BINDING_CREATED>

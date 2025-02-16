@@ -103,7 +103,8 @@ class lhc_shipmentstatus implementation.
             old_entities_new_text = value #( base old_entities_new_text
                                              ( %tky = text_tky
                                                %cid_ref = new_entities_text[ key cid
-                                                                             %cid_ref = u_e->*-%cid_ref ]-%target[ 1 ]-%cid
+                                                                             %cid_ref = u_e->*-%cid_ref
+                                                                             %key = value #( ID = u_e->*-%key-ID ) ]-%target[ 1 ]-%cid
                                                description = u_e->*-LocalizedDescription ) ).
 
             old_entities_new_text_rel = value #( base old_entities_new_text_rel

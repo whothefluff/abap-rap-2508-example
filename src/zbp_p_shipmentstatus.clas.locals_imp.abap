@@ -1,5 +1,25 @@
-class lhc_ShipmentStatus definition
-                         inheriting from cl_abap_behavior_handler ##CLASS_FINAL.
+class lsc_ZP_ShipmentStatus definition ##CLASS_FINAL
+                            inheriting from cl_abap_behavior_saver.
+
+  protected section.
+
+    methods save_modified redefinition.
+
+endclass.
+
+class lsc_ZP_ShipmentStatus implementation.
+
+  method save_modified.
+
+    raise entity event ZP_ShipmentStatus~Deleted
+      from corresponding #( delete-ShipmentStatus ).
+
+  endmethod.
+
+endclass.
+
+class lhc_ShipmentStatus definition ##CLASS_FINAL
+                         inheriting from cl_abap_behavior_handler .
 
   private section.
 
@@ -59,7 +79,7 @@ class lhc_ShipmentStatus implementation.
       failed final(funct_failed)
       reported final(funct_reported) ##EML_READ_IN_LOCAL_MODE_OK.
 
-    final(existing_nat_ids) = value existing_nat_ids( for <r> in funct_result
+    final(existing_nat_ids) = value existing_nat_ids( for <r> in funct_result "where ( %param-%is_draft eq if_abap_behv=>mk-off )
                                                       ( <r>-%param-%data-NaturalId ) ).
 
     final(existing_entities) = filter #( entities in existing_nat_ids where %data-NaturalId eq table_line ).

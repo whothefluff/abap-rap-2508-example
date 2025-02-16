@@ -1,0 +1,9 @@
+@AbapCatalog.typeSpec.changeDocumentRelevant: true    
+@EndUserText.label: 'Is Active'          
+define type ZT_ShipmentStatusIsActive: abap_boolean;
+// enum {
+//  @EndUserText.label: 'Yes'
+//  true = 'X';
+//  @EndUserText.label: 'No'
+//  false = initial;
+//}

@@ -1,4 +1,4 @@
-managed implementation in class zbp_p_shipmentstatus unique;
+managed with additional save with full data implementation in class zbp_p_shipmentstatus unique;
 strict( 2 );
 extensible {
   with validations on save;
@@ -40,6 +40,8 @@ define behavior for ZP_ShipmentStatus
     draft action Resume;
     draft determine action Prepare extensible;
 
+    event Deleted;
+
     mapping for zashpmt_sta corresponding extensible {
       NaturalId = natural_id;
       LocalCreatedAt = local_created_at;
@@ -55,11 +57,12 @@ define behavior for ZP_ShipmentStatusT
   alias ShipmentStatusTexts
   persistent table zashpmt_stat
   draft table zdshpmt_stat query ZP_ShipmentStatusTD
-  ( lock, authorization, etag )dependent by _Up
+  ( lock, authorization, etag )dependent by _up
   extensible {
 
-    field( readonly ) ID;
+    field( readonly ) ID, CreatedAt, CreatedBy, LastChangedAt, LastChangedBy;
     field( readonly: update ) Language;
+    field( mandatory: create ) Language, Description;
 
     update;
     delete;

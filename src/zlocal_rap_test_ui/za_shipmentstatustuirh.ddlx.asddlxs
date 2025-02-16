@@ -1,0 +1,38 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeNamePlural: 'Status Texts - List'
+  }
+}
+annotate entity ZA_ShipmentStatusT with
+  {
+    // <-
+    @UI: { 
+      lineItem: [{
+        importance: #HIGH,
+        position: 10
+      }]
+    }
+    Language;
+    // ->
+    // <-
+    @EndUserText.label: 'Internal Id'
+    @UI: {
+      lineItem: [{
+        importance: #HIGH,
+        position: 20
+      }]
+    }
+    ID;
+    // ->
+    // <-
+    @UI: {
+      lineItem: [{
+        importance: #HIGH,
+        label: 'Description',
+        position: 30
+      }]
+    }
+    Description;
+    // ->
+  }

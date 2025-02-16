@@ -1,0 +1,2 @@
+@EndUserText.label: 'Aggregate Changed On'
+define type ZT_ShipmentStatusAggrChangedAt : abp_lastchange_tstmpl;

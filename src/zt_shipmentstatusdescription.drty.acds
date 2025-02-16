@@ -1,0 +1,2 @@
+@EndUserText.label: 'Description'
+define type ZT_ShipmentStatusDescription : abap.sstring(60); 

@@ -1,0 +1,4 @@
+@AbapCatalog.typeSpec.changeDocumentRelevant: true
+@EndUserText.label: 'Internal Id'
+@Semantics.uuid: true
+define type ZT_ShipmentStatusInternalId : z_shipment_status;

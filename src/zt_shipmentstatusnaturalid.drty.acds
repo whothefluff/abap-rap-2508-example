@@ -1,0 +1,3 @@
+@AbapCatalog.typeSpec.changeDocumentRelevant: true
+@EndUserText.label: 'ID'
+define type ZT_ShipmentStatusNaturalId : abap.int1;
