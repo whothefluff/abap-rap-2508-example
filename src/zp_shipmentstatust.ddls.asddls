@@ -28,7 +28,7 @@ define view entity ZP_ShipmentStatusT
     last_changed_at as LastChangedAt,
     @Search: {
       defaultSearchElement: true,
-      fuzzinessThreshold: 1,
+      fuzzinessThreshold: 0.7,
       ranking: #HIGH
     }
     @Semantics.text: true
