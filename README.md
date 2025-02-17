@@ -48,19 +48,29 @@ General Considerations:
     ```
 * **Persistent** tables should have prefix A and their fields should use **snake_case**. **Draft** tables instead have prefix D and their fields must use **flatcase**. Otherwise there are mapping problems with the behavior definitions
 * For DB **extension fields**, the name must use **flatcase**. This makes it possible to reuse the same include structure for both the persistent table and the draft table.
-* The CDS model of each entity should consist of a **base** entity with prefix P (SAP uses R _sometimes_), a transactional **interface** on top to serve as a **stable** contract (therefore released with C1 contract) using prefix I, and a transactional query on the outmost layer with prefix A
+* The CDS model of each entity should consist of a **base** entity with prefix P (SAP uses R _sometimes_), a transactional **interface** on top to serve as a **stable** contract (therefore released with C1 contract, including its behavior definition) using prefix I, and a transactional query on the outmost layer with prefix A
 * Views of the top layer (prefix A) can use contract C2 but that makes them incompatible with many unreleased annotations. In case of wanting to expose it as a web API it is necessary to create two top projections, one for external use and one for UIs. The reason is that the projection contracts don't support indeterminate projections (this has another problem: any agumentations in a given projection would have to be implemented again for another projection)
-* To be able to have an API that mimics a very simple SM30 instance with a text table, the minimum required version is **7.58** of ABAP (ABAP Platform/SAP S/4HANA 2023). While technically it should have been possible to have it in 7.57, it had a bug that resulted in runtime errors.
-  * Even then, to achieve this, addition _:localized_ must be added to a field in the top projection and the create/update standard operations must use addition _agument_. Finally this feature must be implemented **manually** in the behavior implementation of the projection.
-* Also since **7.58**, projection entities with localized fields allow buffered descriptions through a **propagated buffer**. But again, it has a bug and it results in a runtime error.
-* Value Help definitions don't need a specific view and any other released CDS can be used if appropriate.
-* Ideally, the base CDS of a root entity should have at most 23 characters to allow for some extra suffixes and prefixes.
-* To allow **extensibilty**, only a handful of objects actually have to be released as C0 (well documented)
+* To be able to have an API that mimics a very simple SM30 instance with a text table, the minimum required version is **7.58** of ABAP (ABAP Platform/SAP S/4HANA 2023). While technically it should have been possible to have it in 7.57, it had a bug that resulted in runtime errors
+  * Even then, to achieve this, addition _:localized_ must be added to a field in the top projection and the create/update standard operations must use addition _agument_. Finally this feature must be implemented **manually** in the behavior implementation of the projection
+* Also since **7.58**, projection entities with localized fields allow buffered descriptions through a **propagated buffer**. But again, it has a bug and it results in a runtime error
+* Value Help definitions don't need a specific view and any other released CDS can be used if appropriate
+* Ideally, the base CDS of a root entity should have at most 23 characters to allow for some extra suffixes and prefixes
+* To allow **extensibilty**, only a handful of objects actually have to be released as C0 (well documented):
+  * DDIC objects: extension include structure
+  * CDS: base view, extension view, draft query view, interface view, top (consumption) view
+  * BDEF: base behavior, interface behavior, top (consumption) behavior
+  * Business services: service definition
+* RAP events seem to be related to SAP Object Types in CP, but not for on-premise
 
 UI Observations
+* To change the names of fields, in theory, one should create **CDS types**, add an annotation @EndUserText.label, and use them for casting (also because apparently they will be needed for RAP change documents). In practice, they are completely broken and are useless (enums make bdef fail, bools and dates are not correctly parsed, etc.). So the annotation will be placed in the base entity for now
 * Field order should always be explicitely defined (and with gaps) to make easier for extensions to be placed in between original fields
 * It's a good idea to always add a facet of type IDENTIFICATION_REFERENCE to each entity, even if it's not actually used, because then extensions can make use of it easily
 * The easiest way of having a page **aumatically** load entries **at start** is to create a variant with any filters and set it as default
+* It looks like the annotation PresentationVariant can be used to affect how tables are displayed, but I haven't found the way to make it work
 
 > [!NOTE]
 > The repository contains a package EXT_EG with an actual example of a possible extension. This can be ignored altogether
+
+> [!IMPORTANT]
+> In the future, pure keys (make the natural id function redundant) and change documents (for completness' sake) will be added
